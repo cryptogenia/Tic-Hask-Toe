@@ -27,36 +27,57 @@ _SEP_ = "a|e|y"
 -- *** Assignment 1-2 *** --
 
 -- Q#06
-data Square
+data Square = X | O | E
+        deriving (Show, Eq)
 
 
 -- Q#07
-data GameState
+data GameState = X_victory | O_victory | Tie | In_progress
+        deriving(Show, Eq, Enum)
 
 
 -- Q#08
-
-
+type Player = Square
+type Row = [Square]
+type Line = [Square]
+type Board = [Row]
+type Move = (Int, Int)
 
 
 
 
 -- Q#09
+getFirstPlayer :: Bool -> Player
+getFirstPlayer x = 
+    if x  
+        then X
+        else O
 
-getFirstPlayer = undefined
 
 
-getFirstPlayer_ = undefined
+getFirstPlayer_ :: Bool -> Player
+getFirstPlayer_ x
+  | x = X
+  | otherwise = O
+
 
 -- Q#10
-
-showGameState gs = undefined
+showGameState :: GameState -> String
+showGameState gs = case gs of
+    X_victory -> "X wins"
+    O_victory -> "O wins"
+    Tie -> "It's a tie"
+    _ -> "Game in progress"
 
 -- Q#11
-
-switchPlayer = undefined
-
+switchPlayer :: Player -> Player
+switchPlayer X = O
+switchPlayer O = X
+switchPlayer _ = E
 
 -- Q#12
-
-showSquare = undefined
+showSquare :: Square -> String
+showSquare x
+  | x == X = "x"
+  | x == O = "o"
+  | otherwise = "_"
