@@ -8,33 +8,41 @@ import Data.List (intercalate)
 -- *** Assignment 2-1 *** --
 
 -- Q#01
-
-promptPlayer = undefined
+promptPlayer :: Player -> [String]
+promptPlayer x =  concat [["Player "], [show x], [" 's turn: enter a row and column position (ex. A1)"]]
 
 -- Q#02
-
-_RANGE_ = undefined
+_RANGE_ :: [Int]
+_RANGE_ = [0 .. _SIZE_-1]
 
 -- Q#03
+isDigit :: Char -> Bool
+isDigit x =  x `elem` ['0' .. '9']
 
-isDigit = undefined
-
-
-readDigit = undefined
-
+readDigit :: Char -> Int
+readDigit  x 
+  | isDigit x = read [x]
+  | otherwise = -1
 -- Q#04
 
-_EMPTY_ROW_ = undefined
+_EMPTY_ROW_ = replicate _SIZE_ E
 
 
-_EMPTY_BOARD_ = undefined
+_EMPTY_BOARD_ = replicate _SIZE_ _EMPTY_ROW_
 
 -- Q#05
 
-isTied = undefined
+_TIED_BOARD_ :: Board
+_TIED_BOARD_ = [
+    [X, O, O]
+  , [O, X, X]
+  , [O, X, O]
+  ]
 
+isTied :: Board -> Bool
+isTied x 
+| 
 
-_TIED_BOARD_ = undefined
 
 -- Q#06
 
