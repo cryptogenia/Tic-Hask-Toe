@@ -40,17 +40,16 @@ _TIED_BOARD_ = [
   ]
 
 isTied :: Board -> Bool
-isTied x 
-| 
+isTied x = E `notElem` concat x
 
 
 -- Q#06
-
-indexRowStrings = undefined
+indexRowStrings :: [String] -> [(Char, String)]
+indexRowStrings x = zip ['A' .. ] x
 
 -- Q#07
-
-formatLine = undefined
+formatLine :: [String] -> String
+formatLine x = concat [ _SEP_, intercalate _SEP_ x, _SEP_]
 
 -- *** Assignment 2-2 *** --
 
