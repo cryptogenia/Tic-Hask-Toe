@@ -54,13 +54,17 @@ formatLine x = concat [ _SEP_, intercalate _SEP_ x, _SEP_]
 -- *** Assignment 2-2 *** --
 
 -- Q#08
-
-isMoveInBounds = undefined
+isMoveInBounds :: Move -> Bool
+isMoveInBounds (x, y) = xValid && yValid
+  where 
+    xValid = x `elem` [0 .. _SIZE_-1]
+    yValid = x `elem` [0 .. _SIZE_-1]
 
 -- Q#09
-
-stringToMove = undefined
+stringToMove :: String -> Move
+stringToMove [x,y] = (convertRowIndex x, readDigit y)
+stringToMove _ = _INVALID_MOVE_
 
 -- Q#10
-
+replaceSquareInRow :: Player -> Int -> Row ->  Row
 replaceSquareInRow = undefined
