@@ -66,5 +66,19 @@ stringToMove [x,y] = (convertRowIndex x, readDigit y)
 stringToMove _ = _INVALID_MOVE_
 
 -- Q#10
-replaceSquareInRow :: Player -> Int -> Row ->  Row
-replaceSquareInRow = undefined
+rsX :: Int -> Row -> Row
+rsX cIndex row = replaceSquareInRow X cIndex row 
+
+rsO :: Int -> Row -> Row
+rsO cIndex row = replaceSquareInRow O cIndex row 
+
+replaceSquareInRow :: Player -> Int -> Row -> Row
+replaceSquareInRow player cIndex row 
+      | cIndex >= length row || cIndex < 0  = row
+      | otherwise = x ++ player:ys
+           where (x,_:ys)= splitAt cIndex row 
+
+
+  
+  
+  --splitAt i (row)
