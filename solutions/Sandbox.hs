@@ -1,6 +1,6 @@
 module Sandbox where
 
---live programming A2
+--live programming A3
 sum' :: [Int] -> Int
 sum' [] = 0
 sum' (x:xs) = x + sum' xs
@@ -30,4 +30,4 @@ last' (_:xs) = last' xs
 init' :: [a] -> [a]
 init' [] = error "empty list"
 init' (_:[]) = []
-init' (_:xs) = xs
+init' (x:xs) = x : init' xs
