@@ -19,7 +19,8 @@ _HEADER_  =  " " ++ formatLine (showInts _RANGE_)
 
 showSquares :: [Square] -> [String]
 showSquares [] = []
-showSquares (x:xs) = show x : showSquares xs
+--error was here -> showSquares (x:xs) = show x : showSquares xs
+showSquares (x:xs) = showSquare x : showSquares xs
 
 -- Q#03
 
@@ -59,16 +60,32 @@ getAllLines x = x ++ transpose x ++ [getDiag1 x] ++ [getDiag2 x]
 -- *** Assignment 3-2 ***
 
 -- Q#07
-
-putSquare = undefined
+putSquare :: Player -> Board -> Move -> Board
+putSquare _ [] (_,_) = []
+putSquare p (x:xs) (r,c) = go 0 (x:xs)
+    where 
+    go _ [] = []
+    go aux (x:xs) 
+        | aux == r = replaceSquareInRow p c x : xs
+        | otherwise = x : go  (aux+1) xs
+        
 
 -- Q#08
-
-prependRowIndices = undefined
+prependRowIndices :: [String] -> [String]
+prependRowIndices x = go (indexRowStrings x)
+ where 
+        go []           = []
+        go ((chr, str):xs) = (chr:str) : go xs
 
 -- Q#09
-
-isWinningLine = undefined
+isWinningLine :: Player -> Line -> Bool
+isWinningLine _ [] = False
+isWinningLine p l = go False l
+ where
+    go aux [] = aux
+    go aux (x:xs) 
+     | x == p = go True xs
+     | otherwise = False
 
 -- Q#10
 
