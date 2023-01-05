@@ -88,5 +88,9 @@ isWinningLine p l = go False l
      | otherwise = False
 
 -- Q#10
-
-isValidMove = undefined
+isValidMove :: Board -> Move -> Bool
+isValidMove brd (r,c)  = isMoveInBounds (r,c) && go True brd r
+ where
+    go _ [] _  = False
+    go aux (x:_) 0 = isColEmpty x c && aux
+    go aux (_:xs) y = go aux xs (y-1)
