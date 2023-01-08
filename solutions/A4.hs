@@ -58,19 +58,35 @@ isWinningLine p l = foldr (\x aux ->  x == p && aux) True l
 -- Q#08
 hasWon :: Player -> Board -> Bool
 hasWon _ [] = False
---hasWon p b = foldr  getAllLines b
+hasWon p b = foldr (\x aux -> aux || isWinningLine p x ) False (getAllLines b)
 
+_X_WIN_ = [ [X, O, O]
+          , [O, X, O]
+          , [O, O, X]
+          ]
+
+_O_WIN_ = [ [O, X, O]
+          , [X, X, O]
+          , [X, O, O]
+          ]
 -- Q#09
+getGameState :: Board -> GameState
+getGameState brd 
+  | hasWon X brd = X_victory
+  | hasWon O brd = O_victory
+  | 'E' `elem` show brd = In_progress
+  | otherwise = Tie
 
-getGameState = undefined
 
-
-playMove = undefined
+playMove :: Player -> Board -> Move -> (GameState, Board)
+playMove p brd m = let newbrd = putSquare p brd m
+  in (getGameState $ newbrd, newbrd)
 
 -- Q#10
 
-prependRowIndices = undefined
+prependRowIndices :: [String] -> [String]
+prependRowIndices x = zipWith (++) (map (:[]) ['A'.. ]) x
 
 -- Q#11
-
-formatBoard = undefined
+formatBoard :: Board -> String 
+formatBoard brd = unlines $ _HEADER_ : ( prependRowIndices $  formatRows brd)
