@@ -16,34 +16,43 @@ import A3 hiding (
 
 -- Q#01
 
-_HEADER_ = undefined
+_HEADER_ :: String
+_HEADER_  =  " " ++ formatLine (map show _RANGE_)
 
 -- Q#02
 
-showSquares = undefined
+showSquares :: [Square] -> [String]
+--EMPshowSquares [] = []
+showSquares str = map showSquare str 
 
 -- Q#03
 
-dropFirstCol = undefined
+dropFirstCol :: Board -> Board
+--dropFirstCol [] = []
+dropFirstCol str = map tail str
 
 -- Q#04
 
-dropLastCol = undefined
+dropLastCol :: Board -> Board
+dropLastCol str = map init str
 
 --Q#05
 
-formatRows = undefined
+formatRows :: [Row] -> [String]
+formatRows str =  map  (\x -> formatLine (showSquares x)) str
+--formatRows str =  map  (\x -> formatLine x) showSquares str
+--formatRows (x:xs) =  (formatLine (showSquares x)) : formatRows xs
 
 -- Q#06
-
-isWinningLine_ = undefined
-
+isWinningLine_ :: Player -> Line -> Bool
+isWinningLine_ _ [] = False
+isWinningLine_ p l = null $ filter (\x -> not $ p == x) l 
 
 -- *** Assignment 4-2 *** --
 
 -- Q#07
 
-isWinningLine = undefined
+--isWinningLine = undefined
 
 -- Q#08
 
