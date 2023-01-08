@@ -51,12 +51,14 @@ isWinningLine_ p l = null $ filter (\x -> not $ p == x) l
 -- *** Assignment 4-2 *** --
 
 -- Q#07
-
---isWinningLine = undefined
+isWinningLine :: Player -> Line -> Bool
+isWinningLine _ [] = False
+isWinningLine p l = foldr (\x aux ->  x == p && aux) True l
 
 -- Q#08
-
-hasWon = undefined
+hasWon :: Player -> Board -> Bool
+hasWon _ [] = False
+--hasWon p b = foldr  getAllLines b
 
 -- Q#09
 
