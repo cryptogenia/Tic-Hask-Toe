@@ -83,9 +83,9 @@ playMove p brd m = let newbrd = putSquare p brd m
   in (getGameState $ newbrd, newbrd)
 
 -- Q#10
-
 prependRowIndices :: [String] -> [String]
-prependRowIndices x = zipWith (++) (map (:[]) ['A'.. ]) x
+--prependRowIndices x = zipWith (++) (map (:[]) ['A'.. ]) x
+prependRowIndices x = zipWith (:) ['A'.. ] x
 
 -- Q#11
 formatBoard :: Board -> String 
