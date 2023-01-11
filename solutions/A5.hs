@@ -10,28 +10,36 @@ import Control.Monad (when)
 
 -- *** Assignment 5-1 *** --
 
--- Q#01
+-- Q#01 Write an action printBoard that takes a Board value, formats it using formatBoard, and prints the resulting string to the terminal.
+printBoard :: Board -> IO ()
+printBoard brd = putStrLn $ formatBoard brd
 
-printBoard = undefined
-
--- Q#02
+-- Q#02 Write an action printLogo that reads the logo art from an external .txt file and prints it to the terminal.
 _LOGO_PATH_ :: FilePath
 _LOGO_PATH_ = "./assets/logo.txt"
+ 
+printLogo :: IO ()
+printLogo = readFile _LOGO_PATH_ >>= putStrLn
 
-
-printLogo = undefined
-
--- Q#03
+-- Q#03 Write an action firstPlayer which composes the provided _RANDOM_BOOL constant with a lambda expression that applies getFirstPlayer and returns the corresponding Player value in the IO context.
 _RANDOM_BOOL_ :: IO Bool
 _RANDOM_BOOL_ = uniformM globalStdGen
 
+firstPlayer :: IO Player
+firstPlayer = _RANDOM_BOOL_ >>=  return . (\x -> getFirstPlayer x)
 
-firstPlayer = undefined
+-- Q#04 Write an action getMove that takes a Board value as input, receives a move string from the user, validates the move, and then does one of the following
+--getMove :: Board
+getMove brd = getLine >>= go "xdsad"
+ where 
+    go move
+     | _ = move
+     --   go move 
+      --   | "está vacío" = "está vacío"
+      --   | otherwise = "has escrito " ++ move
 
--- Q#04
 
-getMove = undefined
-
+--getLine >>= return . (\x -> "test "  ++ x )
 -- Q#05
 
 play = undefined
